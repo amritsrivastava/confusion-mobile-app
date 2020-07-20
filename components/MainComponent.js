@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
+import Reservation from './ReservationComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import {
@@ -102,6 +103,31 @@ const HomeNavigator = createStackNavigator(
 const ContactNavigator = createStackNavigator(
   {
     Contact: { screen: Contact },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#512DA8',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff',
+      },
+      headerLeft: (
+        <Icon
+          name="menu"
+          size={24}
+          color="white"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
+  }
+);
+
+const ReservationNavigator = createStackNavigator(
+  {
+    Reservation: { screen: Reservation },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -218,6 +244,21 @@ const MainNavigator = createDrawerNavigator(
             name="address-card"
             type="font-awesome"
             size={22}
+            color={tintColor}
+          />
+        ),
+      },
+    },
+    Reservation: {
+      screen: ReservationNavigator,
+      navigationOptions: {
+        title: 'Reserve Table',
+        drawerLabel: 'Reserve Table',
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="cutlery"
+            type="font-awesome"
+            size={24}
             color={tintColor}
           />
         ),
